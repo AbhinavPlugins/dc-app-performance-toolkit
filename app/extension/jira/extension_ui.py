@@ -18,7 +18,7 @@ def app_specific_action(webdriver, datasets):
     @print_timing("selenium_app_custom_action_edit_timetracking")
     def measure():
 
-        issue_page = Issue(webdriver, issue_id=datasets['custom_issue_id'])
+        issue_page = Issue(webdriver, issue_id=issue_id)
 
         @print_timing("selenium_app_custom_action_edit_timetracking:open_edit_issue_form")
         def sub_measure():
@@ -96,7 +96,7 @@ def app_specific_action(webdriver, datasets):
     def measure():
         @print_timing("selenium_app_role_based_tracking:view_issue")
         def sub_measure():
-            page.go_to_url(f"{JIRA_SETTINGS.server_url}/browse/{datasets['custom_issue_key']}")
+            page.go_to_url(f"{JIRA_SETTINGS.server_url}/browse/{issue_key}")
             page.wait_until_visible((By.ID, "summary-val"))  # Wait for summary field visible
             page.wait_until_visible((By.ID, "log-work-link"))  # Wait for you app-specific UI element by ID selector
         sub_measure()
