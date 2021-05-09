@@ -113,6 +113,13 @@ class IssueLocators:
     issue_ready_to_save_spinner = (By.CSS_SELECTOR, ".buttons>.throbber")
     issue_submit_button = (By.ID, "create-issue-submit")
 
+    # Role based selectors
+    role_assign_to_me_link = (By.ID, 'assignRoleToMe')
+    role_time_tracking_org = (By.CSS_SELECTOR, "[id^=timeTrackingCF-original-]")
+    role_log_work = (By.ID, "log-work-time-logged")
+    role_dropdown = (By.ID, "logWorkCF-role")
+    role_time_tracking_org_class = (By.CLASS_NAME, "TimeTrackingOrgField")
+
     # Edit Issue page
     edit_issue_page = (By.ID, "issue-edit")
     edit_issue_description = (By.ID, 'description')
