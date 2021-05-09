@@ -201,7 +201,8 @@ class Issue(BasePage):
         wait.until(EC.element_to_be_clickable(IssueLocators.role_time_tracking_org_class)).send_keys(est)
 
     def fill_logwork_role(self, est):
-        self.wait_until_clickable(IssueLocators.role_log_work).send_keys(est)
+        self.__fill_textfield(est, selector=IssueLocators.role_log_work)
+        # self.wait_until_clickable(IssueLocators.role_log_work).send_keys(est)
         role_dropdown = Select(self.get_element(IssueLocators.role_dropdown))
         role_dropdown.select_by_index(1)
 
