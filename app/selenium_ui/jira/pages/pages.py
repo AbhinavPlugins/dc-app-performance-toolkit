@@ -3,6 +3,9 @@ from selenium_ui.conftest import retry
 import time
 import random
 import json
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from selenium_ui.base_page import BasePage
 from selenium_ui.jira.pages.selectors import UrlManager, LoginPageLocators, DashboardLocators, PopupLocators, \
@@ -185,6 +188,22 @@ class Issue(BasePage):
         self.get_element(IssueLocators.edit_comment_add_comment_button).click()
         self.wait_until_visible(IssueLocators.issue_title)
 
+    def assign_to_me_role(self):
+        roleAssigneeLinks = self.get_elements(IssueLocators.role_assign_to_me_link)
+        for link in roleAssigneeLinks:
+            link.click()
+
+    def fill_timetracking_role(self, est):
+        self.wait_until_clickable(IssueLocators.role_time_tracking_org).send_keys(est)
+
+    def fill_timetracking_role_create(self, est, driver):
+        wait = WebDriverWait(driver, 10)
+        wait.until(EC.element_to_be_clickable(IssueLocators.role_time_tracking_org_class)).send_keys(est)
+
+    def fill_logwork_role(self, est):
+        self.wait_until_clickable(IssueLocators.role_log_work).send_keys(est)
+        role_dropdown = Select(self.get_element(IssueLocators.role_dropdown))
+        role_dropdown.select_by_index(1)
 
 class Project(BasePage):
     page_loaded_selector = ProjectLocators.project_summary_property_column
