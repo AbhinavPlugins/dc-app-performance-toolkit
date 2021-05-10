@@ -49,7 +49,7 @@ def app_legacy_worklog(locust):
 
 @jira_measure("locust_app_specific_timetracking_role:subtaskenteries")
 def app_subtaskenteries(locust):
-    r = locust.get('/rest/adweb/2/timetracking/subTaskEntries/ATKEAA-56', catch_response=True)  # call app-specific GET endpoint
+    r = locust.get('/rest/adweb/2/timetracking/subTaskEntries/ATKEAA-54', catch_response=True)  # call app-specific GET endpoint
     content = r.content.decode('utf-8')
     assert 'subTaskRoleEntry' in content
 
