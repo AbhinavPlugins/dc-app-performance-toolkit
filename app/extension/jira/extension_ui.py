@@ -6,7 +6,7 @@ from selenium_ui.base_page import BasePage
 from selenium_ui.conftest import print_timing
 from selenium_ui.jira.pages.pages import Login
 from util.conf import JIRA_SETTINGS
-from selenium_ui.jira.pages.pages import Issue
+from selenium_ui.jira.pages.pages import Issue, PopupManager
 from selenium.webdriver.support.select import Select
 
 def app_specific_action(webdriver, datasets):
@@ -125,16 +125,22 @@ def app_specific_action(webdriver, datasets):
             page.go_to_url(f'{JIRA_SETTINGS.server_url}/issues/?jql="Time Tracking (By Roles)" = timeTrackingRole() AND "Assignees (By Roles)" = assignedRole() AND "Time Tracking (By Roles)" = originalEstByRole("")')
             page.wait_until_visible((By.CLASS_NAME, "results-panel"))
         sub_measure()
-
-        @print_timing("selenium_app_custom_action_timetracking:log_work")
-        def sub_measure():
-            page.go_to_url(f"{JIRA_SETTINGS.server_url}/browse/{datasets['custom_issue_key']}")
-            page.wait_until_clickable((By.ID, "log-work-link")).click()
-            page.wait_until_clickable((By.ID, "log-work-time-logged")).send_keys("1h")
-            role_dropdown = Select(page.get_element((By.ID, "log-work-role")))
-            role_dropdown.select_by_index(1)
-            page.get_element((By.ID, "aui-dialog-log")).click()
-            page.wait_until_clickable((By.ID, "log-work-link"))
-        sub_measure()
     measure()
 
+
+def app_specific_action_logwork(webdriver, datasets):
+    page = BasePage(webdriver)
+    @print_timing("selenium_app_custom_action_timetracking:log_work")
+    def measure():
+        page.go_to_url(f"{JIRA_SETTINGS.server_url}/browse/{datasets['custom_issue_key']}")
+        page.wait_until_clickable((By.ID, "log-work-link")).click()
+        page.wait_until_clickable((By.ID, "log-work-time-logged")).send_keys("1h")
+        role_dropdown = Select(page.get_element((By.ID, "log-work-role")))
+        role_dropdown.select_by_index(1)
+
+        @print_timing("selenium_app_custom_action_timetracking:submit_log_work_form")
+        def sub_measure():
+            page.wait_until_clickable((By.ID, "aui-dialog-log")).click()
+            page.wait_until_visible((By.CLASS_NAME, "aui-message-success"))
+        sub_measure()
+    measure()

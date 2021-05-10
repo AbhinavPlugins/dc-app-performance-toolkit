@@ -15,7 +15,7 @@ from selenium_ui.jira.pages.selectors import UrlManager, LoginPageLocators, Dash
 class PopupManager(BasePage):
 
     def dismiss_default_popup(self):
-        return self.dismiss_popup(PopupLocators.default_popup, PopupLocators.popup_1, PopupLocators.popup_2)
+        return self.dismiss_popup(PopupLocators.default_popup, PopupLocators.popup_1, PopupLocators.popup_2, PopupLocators.popup_3, PopupLocators.popup_4)
 
 
 class Login(BasePage):

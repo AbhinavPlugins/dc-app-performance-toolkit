@@ -6,6 +6,8 @@ class PopupLocators:
     default_popup = '.aui-message .icon-close'
     popup_1 = 'form.tip-footer>.helptip-close'
     popup_2 = '.aui-inline-dialog-contents .cancel'
+    popup_3 = '.aui-button-link .cancel'
+    popup_4 = '.aui-close-button'
 
 
 class UrlManager:
@@ -120,6 +122,7 @@ class IssueLocators:
     role_dropdown = (By.ID, "logWorkCF-role")
     role_time_tracking_org_class = (By.CLASS_NAME, "TimeTrackingOrgField")
     role_dropdown_view_issue = (By.ID, "log-work-role")
+    role_log_work_dialog = (By.ID, "log-work-link-dialog")
 
     # Edit Issue page
     edit_issue_page = (By.ID, "issue-edit")
