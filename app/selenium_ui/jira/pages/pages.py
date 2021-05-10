@@ -206,11 +206,11 @@ class Issue(BasePage):
         role_dropdown = Select(self.get_element(IssueLocators.role_dropdown))
         role_dropdown.select_by_index(1)
 
-    def fill_logwork_role_view_issue(self, est):
-        self.__fill_textfield(est, selector=IssueLocators.role_log_work)
-        # self.wait_until_clickable(IssueLocators.role_log_work).send_keys(est)
-        role_dropdown = Select(self.get_element(IssueLocators.role_dropdown_view_issue))
-        role_dropdown.select_by_index(1)
+    # def fill_logwork_role_view_issue(self, est):
+    #     self.__fill_textfield(est, selector=IssueLocators.role_log_work)
+    #     # self.wait_until_clickable(IssueLocators.role_log_work).send_keys(est)
+    #     role_dropdown = Select(self.get_element(IssueLocators.role_dropdown_view_issue))
+    #     role_dropdown.select_by_index(1)
 
 class Project(BasePage):
     page_loaded_selector = ProjectLocators.project_summary_property_column
