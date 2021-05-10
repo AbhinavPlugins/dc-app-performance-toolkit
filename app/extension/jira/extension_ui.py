@@ -103,7 +103,7 @@ def app_specific_action(webdriver, datasets):
 
         @print_timing("selenium_app_role_based_tracking:sprint_workloadTab")
         def sub_measure():
-            page.go_to_url(f"{JIRA_SETTINGS.server_url}/projects/TT?selectedItem=com.adweb.estimations.estimationUpdate:sprint-workloadTab")
+            page.go_to_url(f"{JIRA_SETTINGS.server_url}/projects/ATKEAA?selectedItem=com.adweb.estimations.estimationUpdate:sprint-workloadTab")
             page.wait_until_visible((By.ID, "sprint-workload-page"))
         sub_measure()
 
@@ -121,7 +121,7 @@ def app_specific_action(webdriver, datasets):
 
         @print_timing("selenium_app_role_based_tracking:app_jql_functions")
         def sub_measure():
-            page.go_to_url(f'{JIRA_SETTINGS.server_url}/browse/MH-19?jql="Time Tracking (By Roles)" = timeTrackingRole() AND "Assignees (By Roles)" = assignedRole() AND "Time Tracking (By Roles)" = originalEstByRole("")')
+            page.go_to_url(f'{JIRA_SETTINGS.server_url}/browse/ATKEAA-56?jql="Time Tracking (By Roles)" = timeTrackingRole() AND "Assignees (By Roles)" = assignedRole() AND "Time Tracking (By Roles)" = originalEstByRole("")')
             page.wait_until_visible((By.CLASS_NAME, "simple-issue-list"))
         sub_measure()
     measure()
