@@ -39,10 +39,10 @@ def app_specific_action(webdriver, datasets):
             issue_page.assign_to_me_role()
         sub_measure()
 
-        @print_timing("selenium_app_custom_action_edit_timetracking:fill_logwork")
-        def sub_measure():
-            issue_page.fill_logwork_role("1h") #logwork
-        sub_measure()
+        # @print_timing("selenium_app_custom_action_edit_timetracking:fill_logwork")
+        # def sub_measure():
+        #     issue_page.fill_logwork_role("1h") #logwork
+        # sub_measure()
 
         @print_timing("selenium_app_custom_action_edit_timetracking:save_edit_issue_form")
         def sub_measure():
