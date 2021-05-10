@@ -69,19 +69,19 @@ class JiraBehavior(MyBaseTaskSet):
         app_role_worklog(self)
 
     @task(config.percentage('standalone_extension'))  # By default disabled
-    def custom_action(self):
+    def custom_action_app_role_assignee(self):
         app_role_assignee(self)
 
     @task(config.percentage('standalone_extension'))  # By default disabled
-    def custom_action(self):
+    def custom_action_app_legacy_worklog(self):
         app_legacy_worklog(self)
 
     @task(config.percentage('standalone_extension'))  # By default disabled
-    def custom_action(self):
+    def custom_action_app_subtaskenteries(self):
         app_subtaskenteries(self)
 
     @task(config.percentage('standalone_extension'))  # By default disabled
-    def custom_action(self):
+    def custom_action_app_timetracking(self):
         app_timetracking(self)
 
 

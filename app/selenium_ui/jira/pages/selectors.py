@@ -119,6 +119,7 @@ class IssueLocators:
     role_log_work = (By.ID, "log-work-time-logged")
     role_dropdown = (By.ID, "logWorkCF-role")
     role_time_tracking_org_class = (By.CLASS_NAME, "TimeTrackingOrgField")
+    role_dropdown_view_issue = (By.ID, "log-work-role")
 
     # Edit Issue page
     edit_issue_page = (By.ID, "issue-edit")
