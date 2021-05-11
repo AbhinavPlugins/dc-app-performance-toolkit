@@ -76,7 +76,7 @@ def app_specific_action_misc_report(webdriver, datasets):
     page = BasePage(webdriver)
     @print_timing("selenium_app_custom_action_misc:view_report")
     def measure():
-        page.go_to_url(f"{JIRA_SETTINGS.server_url}/secure/ConfigureReport.jspa?selectedProjectId=10000&projectSprint=0&userID=all&reportKey=au.com.adweb.plugin.mischrs%3Amisc-hours-report")
+        page.go_to_url(f"{JIRA_SETTINGS.server_url}/secure/ConfigureReport.jspa?selectedProjectId=10050&projectSprint=0&userID=all&reportKey=au.com.adweb.plugin.mischrs:misc-hours-report")
 
         page.wait_until_visible((By.CLASS_NAME, "timeReport"))
     measure()
