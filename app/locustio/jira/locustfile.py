@@ -63,9 +63,9 @@ class JiraBehavior(MyBaseTaskSet):
     def browse_boards_action(self):
         browse_boards(self)
 
-    @task(config.percentage('standalone_extension'))  # By default disabled
-    def custom_action(self):
-        app_dropdown_data(self)
+    # @task(config.percentage('standalone_extension'))  # By default disabled
+    # def custom_action(self):
+    #     app_dropdown_data(self)
 
 
 class JiraUser(HttpUser):
