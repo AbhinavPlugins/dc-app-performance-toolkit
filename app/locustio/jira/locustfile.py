@@ -3,7 +3,10 @@ from locustio.jira.http_actions import login_and_view_dashboard, create_issue, s
     view_project_summary, view_dashboard, edit_issue, add_comment, browse_boards, view_kanban_board, view_scrum_board, \
     view_backlog, browse_projects
 from locustio.common_utils import LocustConfig, MyBaseTaskSet
-from extension.jira.extension_locust import app_dropdown_data
+
+from extension.jira.extension_locust import app_role_worklog, app_role_assignee, app_legacy_worklog, app_subtaskenteries, \
+    app_timetracking, app_workratio
+
 from util.conf import JIRA_SETTINGS
 
 config = LocustConfig(config_yml=JIRA_SETTINGS)
@@ -63,9 +66,25 @@ class JiraBehavior(MyBaseTaskSet):
     def browse_boards_action(self):
         browse_boards(self)
 
-    # @task(config.percentage('standalone_extension'))  # By default disabled
-    # def custom_action(self):
-    #     app_dropdown_data(self)
+    @task(config.percentage('standalone_extension'))  # By default disabled
+    def custom_action(self):
+        app_role_worklog(self)
+
+    @task(config.percentage('standalone_extension'))  # By default disabled
+    def custom_action_app_role_assignee(self):
+        app_role_assignee(self)
+
+    @task(config.percentage('standalone_extension'))  # By default disabled
+    def custom_action_app_legacy_worklog(self):
+        app_legacy_worklog(self)
+
+    @task(config.percentage('standalone_extension'))  # By default disabled
+    def custom_action_app_subtaskenteries(self):
+        app_subtaskenteries(self)
+
+    @task(config.percentage('standalone_extension'))  # By default disabled
+    def custom_action_app_timetracking(self):
+        app_timetracking(self)
 
 
 class JiraUser(HttpUser):

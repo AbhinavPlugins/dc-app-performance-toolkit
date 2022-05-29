@@ -258,5 +258,5 @@ def log_out(webdriver, datasets):
         logout_page.go_to()
         logout_page.click_logout()
         logout_page.wait_for_page_loaded()
-
     measure()
+
