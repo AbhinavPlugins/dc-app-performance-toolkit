@@ -1,10 +1,7 @@
-import random
-
 from selenium.webdriver.common.by import By
 
 from selenium_ui.base_page import BasePage
 from selenium_ui.conftest import print_timing
-from selenium_ui.jira.pages.pages import Login
 from util.conf import JIRA_SETTINGS
 from selenium_ui.jira.pages.pages import Issue, PopupManager
 from selenium.webdriver.support.select import Select
@@ -143,4 +140,3 @@ def app_specific_action_logwork(webdriver, datasets):
             page.wait_until_clickable((By.ID, "aui-dialog-log")).click()
             page.wait_until_visible((By.CLASS_NAME, "aui-message-success"))
         sub_measure()
-    measure()
