@@ -165,9 +165,10 @@ def create_issue(locust):
     @jira_measure('locust_create_issue:open_quick_create')
     def create_issue_open_quick_create():
         raise_if_login_failed(locust)
-
         # 200 /secure/QuickCreateIssue!default.jspa?decorator=none
-        r = locust.post('/secure/QuickCreateIssue!default.jspa?decorator=none', ADMIN_HEADERS, catch_response=True)
+        r = locust.post('/secure/QuickCreateIssue!default.jspa',
+                        json={'atlassian.xsrf.token': locust.session_data_storage["token"]},
+                        headers=ADMIN_HEADERS, catch_response=True)
 
         content = r.content.decode('utf-8')
         atl_token = fetch_by_re(params.atl_token_pattern, content)
@@ -193,7 +194,7 @@ def create_issue(locust):
         # 205 /rest/quickedit/1.0/userpreferences/create
         locust.post('/rest/quickedit/1.0/userpreferences/create',
                     json=params.user_preferences_payload,
-                    headers=ADMIN_HEADERS,
+                    headers=RESOURCE_HEADERS,
                     catch_response=True)
 
         # 210 /rest/analytics/1.0/publish/bulk
@@ -348,10 +349,7 @@ def view_project_summary(locust):
     content = r.content.decode('utf-8')
     logger.locust_info(f"{params.action_name}. View project {project_key}: {content}")
 
-    assert_string = f'["project-key"]="\\"{project_key}\\"'
-    if not (assert_string in content):
-        logger.error(f'{params.err_message} {project_key}')
-    assert assert_string in content, params.err_message
+    assert re.compile(f'.*project-key.*{project_key}').search(content), params.err_message
 
     # 505 /rest/webResources/1.0/resources
     locust.post('/rest/webResources/1.0/resources',
@@ -513,6 +511,7 @@ def edit_issue(locust):
                     json=params.resources_body.get("770"),
                     headers=RESOURCE_HEADERS,
                     catch_response=True)
+
     edit_issue_save_edit()
 
 
@@ -749,7 +748,6 @@ def view_backlog(locust):
 
 @jira_measure('locust_browse_boards')
 def browse_boards(locust):
-
     raise_if_login_failed(locust)
     params = BrowseBoards()
 
@@ -792,7 +790,8 @@ def kanban_board(locust, board_id):
     if project_plan:
         project_plan = project_plan.replace('\\', '')
     logger.locust_info(f"{params.action_name}: key = {project_key}, id = {project_id}, plan = {project_plan}")
-    assert f'currentViewConfig\"{{\"id\":{board_id}', 'Could not open board'
+
+    assert re.compile(f'currentViewConfig.*id.*{board_id}').search(content), f'Could not open board with id {board_id}'
 
     # 1005 /rest/webResources/1.0/resources
     locust.post('/rest/webResources/1.0/resources',
@@ -844,7 +843,7 @@ def kanban_board(locust, board_id):
             # 1055 /rest/greenhopper/1.0/xboard/work/transitions.json
             locust.get(f'/rest/greenhopper/1.0/xboard/work/transitions.json?'
                        f'projectId={project_id}'
-                       f'&_={timestamp_int()}')
+                       f'&_={timestamp_int()}', catch_response=True)
 
         # 1060 /rest/analytics/1.0/publish/bulk
         locust.post('/rest/analytics/1.0/publish/bulk',
@@ -860,7 +859,6 @@ def kanban_board(locust, board_id):
 
 
 def scrum_board(locust, board_id):
-
     params = ViewBoard(action_name='view_scrum_board')
 
     # 1100 /secure/RapidBoard.jspa
@@ -873,7 +871,7 @@ def scrum_board(locust, board_id):
     if project_plan:
         project_plan = project_plan.replace('\\', '')
     logger.locust_info(f"{params.action_name}: key = {project_key}, id = {project_id}, plan = {project_plan}")
-    assert f'currentViewConfig\"{{\"id\":{board_id}', 'Could not open board'
+    assert re.compile(f'currentViewConfig.*id.*{board_id}').search(content), f'Could not open board with id {board_id}'
 
     # 1110 /rest/webResources/1.0/resources
     locust.post('/rest/webResources/1.0/resources',
@@ -951,7 +949,6 @@ def scrum_board(locust, board_id):
 
 
 def backlog_board(locust, board_id):
-
     params = ViewBoard(action_name='view_backlog')
 
     # 1200 /secure/RapidBoard.jspa
@@ -967,7 +964,8 @@ def backlog_board(locust, board_id):
     if project_plan:
         project_plan = project_plan.replace('\\', '')
     logger.locust_info(f"{params.action_name}: key = {project_key}, id = {project_id}, plan = {project_plan}")
-    assert f'currentViewConfig\"{{\"id\":{board_id}', 'Could not open board'
+
+    assert re.compile(f'currentViewConfig.*id.*{board_id}').search(content), f'Could not open board with id {board_id}'
 
     # 1210 /rest/webResources/1.0/resources
     locust.post('/rest/webResources/1.0/resources',
