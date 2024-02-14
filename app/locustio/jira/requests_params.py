@@ -20,7 +20,7 @@ def jira_datasets():
 
 
 class JiraResource(BaseResource):
-    
+
     def __init__(self, resource_file='locustio/jira/resources.json'):
         super().__init__(resource_file)
 
@@ -28,10 +28,12 @@ class JiraResource(BaseResource):
 class Login(JiraResource):
     action_name = 'login_and_view_dashboard'
     atl_token_pattern = r'name="atlassian-token" content="(.+?)">'
+
     login_body = {
         'os_username': '',
         'os_password': '',
         'os_destination': '',
+        'os_cookie': True,
         'user_role': '',
         'atl_token': '',
         'login': 'Log in'
@@ -81,6 +83,7 @@ class CreateIssue(JiraResource):
         form_token = issue_body_dict['form_token']
         issue_type = issue_body_dict['issue_type']
         resolution_done = issue_body_dict['resolution_done']
+        resolution_string = f'&resolution={resolution_done}' if resolution_done else ''
         fields_to_retain = issue_body_dict['fields_to_retain']
         custom_fields_to_retain = issue_body_dict['custom_fields_to_retain']
 
@@ -89,7 +92,7 @@ class CreateIssue(JiraResource):
                        f"&description={description}&timetracking_originalestimate={timetracking_originalestimate}" \
                        f"&timetracking_remainingestimate={timetracking_remainingestimate}" \
                        f"&is_create_issue={is_create_issue}" \
-                       f"&hasWorkStarted={has_work_started}&resolution={resolution_done}"
+                       f"&hasWorkStarted={has_work_started}{resolution_string}"
         fields_to_retain_body = ''
         custom_fields_to_retain_body = ''
         for field in fields_to_retain:
@@ -162,5 +165,4 @@ class ViewBoard(JiraResource):
 
 
 class BrowseBoards(JiraResource):
-
     action_name = 'browse_boards'
