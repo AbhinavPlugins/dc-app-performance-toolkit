@@ -5,7 +5,7 @@ settings:
   verbose: false
   check-updates: false                 # disable bzt check for updates
   env:
-    application_hostname: jira-loadb-1e1pshr2ucnrj-1016554695.us-east-1.elb.amazonaws.com    # Jira DC hostname without protocol and port e.g. test-jira.atlassian.com or localhost
+    application_hostname: a56726e4aad3646e8a59e19808e309c0-1246984556.us-east-2.elb.amazonaws.com    # Jira DC hostname without protocol and port e.g. test-jira.atlassian.com or localhost
     application_protocol: http         # http or https
     application_port: 80               # 80, 443, 8080, 2990, etc
     secure: True                       # Set False to allow insecure connections, e.g. when using self-signed SSL certificate
@@ -36,9 +36,9 @@ settings:
     view_kanban_board: 7
     view_backlog: 6
     browse_boards: 1
-    standalone_extension: 5 # By default disabled
+    standalone_extension: 0 # By default disabled
     # Custom dataset section.
-    custom_dataset_query: 'project = atonkeanaa AND "Time Tracking (By Roles)" = timeTrackingRole()' # Write JQL query to add JQL output to the app/datasets/jira/custom-issues.csv, e.g. "summary ~ 'AppIssue*'"
+    custom_dataset_query: 'project = aaeneus AND "Time Tracking (By Roles)" = timeTrackingRole()' # Write JQL query to add JQL output to the app/datasets/jira/custom-issues.csv, e.g. "summary ~ 'AppIssue*'"
 services:
   - module: shellexec
     prepare:

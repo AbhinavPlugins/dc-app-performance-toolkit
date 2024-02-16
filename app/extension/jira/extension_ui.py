@@ -101,7 +101,7 @@ def app_specific_action(webdriver, datasets):
 
         @print_timing("selenium_app_role_based_tracking:sprint_workloadTab")
         def sub_measure():
-            page.go_to_url(f"{JIRA_SETTINGS.server_url}/projects/ATKEAA?selectedItem=com.adweb.estimations.estimationUpdate:sprint-workloadTab")
+            page.go_to_url(f"{JIRA_SETTINGS.server_url}/projects/AANES?selectedItem=com.adweb.estimations.estimationUpdate:sprint-workloadTab")
             page.wait_until_visible((By.ID, "sprint-workload-page"))
         sub_measure()
 
@@ -113,7 +113,7 @@ def app_specific_action(webdriver, datasets):
 
         @print_timing("selenium_app_role_based_tracking:estimation_accuracy_reports")
         def sub_measure():
-            page.go_to_url(f"{JIRA_SETTINGS.server_url}/secure/ConfigureReport.jspa?projectId=-1&userId=all&issues=all&fixVersion=-1&filterId=-1&projectRole=all&selectedProjectId=10000&reportKey=com.adweb.estimations.estimationUpdate%3Aestimation-accuracy-by-roles")
+            page.go_to_url(f"{JIRA_SETTINGS.server_url}/secure/ConfigureReport.jspa?projectId=-1&userId=all&issues=all&fixVersion=-1&filterId=-1&projectRole=all&selectedProjectId=10396&reportKey=com.adweb.estimations.estimationUpdate%3Aestimation-accuracy-by-roles")
             page.wait_until_visible((By.CLASS_NAME, "timeReportHeader"))
         sub_measure()
 
