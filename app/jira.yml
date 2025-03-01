@@ -38,7 +38,8 @@ settings:
     browse_boards: 1
     standalone_extension: 0 # By default disabled
     # Custom dataset section.
-    custom_dataset_query: 'project = aaeneus AND "Time Tracking (By Roles)" = timeTrackingRole()' # Write JQL query to add JQL output to the app/datasets/jira/custom-issues.csv, e.g. "summary ~ 'AppIssue*'"
+    # custom_dataset_query: 'project = aaeneus AND "Time Tracking (By Roles)" = timeTrackingRole()' # Write JQL query to add JQL output to the app/datasets/jira/custom-issues.csv, e.g. "summary ~ 'AppIssue*'"
+    custom_dataset_query: 'project = aaeneus'
 services:
   - module: shellexec
     prepare:
