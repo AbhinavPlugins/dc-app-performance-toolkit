@@ -130,6 +130,15 @@ class IssueLocators:
     edit_comment_text_field_RTE = (By.XPATH, "//div[textarea[@id='comment']]//iframe")
     edit_comment_text_field = (By.XPATH, "//textarea[@id='comment']")
 
+    # Role based selectors
+    role_assign_to_me_link = (By.ID, 'assignRoleToMe')
+    role_time_tracking_org = (By.CSS_SELECTOR, "[id^=timeTrackingCF-original-]")
+    role_log_work = (By.ID, "log-work-time-logged")
+    role_dropdown = (By.ID, "logWorkCF-role")
+    role_time_tracking_org_class = (By.CLASS_NAME, "TimeTrackingOrgField")
+    role_dropdown_view_issue = (By.ID, "log-work-role")
+    role_log_work_dialog = (By.ID, "log-work-link-dialog")
+
 
 class ProjectLocators:
     project_summary_property_column = (By.CLASS_NAME, 'project-meta-column')

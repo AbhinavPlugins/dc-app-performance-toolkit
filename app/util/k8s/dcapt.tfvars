@@ -11,20 +11,20 @@
 # This value can not be altered after the configuration has been applied.
 # Only lowercase letters, numbers, dashes, and dots are allowed.
 # ! REQUIRED !
-environment_name = "dcapt-product"
+environment_name = "dcapt-jira"
 
 # Supported products: jira, confluence, bitbucket, crowd and bamboo.
 # For JSM set product as jira.
 # e.g.: products = ["jira"]
 # ! REQUIRED !
-products = ["product-to-deploy"]
+products = ["jira"]
 
 # License
 # To avoid storing license in a plain text file, we recommend storing it in an environment variable prefixed with `TF_VAR_` (i.e. `TF_VAR_jira_license`) and keep the below line commented out
 # If storing license as plain-text is not a concern for this environment, feel free to uncomment the following line and supply the license here.
 # ! IMPORTANT ! Please make sure valid license is used without spaces and new line symbols.
 # ! REQUIRED !
-jira_license = "jira-license"
+jira_license = "AAAB7g0ODAoPeNqVUk2P2jAUvOdXROqlPYS1k7JLkCKVTbzdlJAAAdpKvZjwIIZgR85Hl/31zQcIWnaRKvnisTzzZt58CAuuDoqNipGKun2j28dd1XZmqo70rmJLoDkT3KE5WDWioZ6GkeKxCHgGs0MKPt2DZQejEZna7sBTtkzSzvGdrFj92yL+jEzHUzckil/slyCD9TwDmVkaPlGRl5TJw4WOWZ2WLJViVUR5p75omVjnv6mEDo1yVoKVywKUsFhmkWRpI9YgpKRJQc/3hqhipzbwHGQLJq30M81ia2R/tp8m9pDe6cv5tnwssbuYmHPKh8/bFz0hi4m7GLgoMhZO8LpxH16LpynGd+RgEDTl4+HJh+tYnuuExNc8HWOkG6Zxy0WYU1nPs6ZJVvkAWYKsKB5/IF0zfwZYc/3eveYF3a/KDg6LKrPaEr5H6AH1DAMrGwnAY5GmIG+kPi5kFNMM/t3j5e8mmFSy7BQq8a2/fbyh9VYDHDgv41vlVg2PbtWP9QbUdgWffvXV85aUEWUVyimP/r8KV526HPSyJzc43unGKXFdCeSGcpa1nfoOsAO+AqnOIIq5SMSGQaZ63lixBc8rTVIZSiy6jBmnpdjG1DS+iCJPhNh1IrFvR7kavEGvJr6R9VGtgd8X+wN9TVXPMCwCFAsuLcjaodrKdBfPLD4e2M1RajKiAhQElYEu/F68KnThKhDHpNF/3/8B8w==X02nf"
 confluence_license = "confluence-license"
 bitbucket_license = "bitbucket-license"
 crowd_license = "crowd-license"
@@ -34,7 +34,7 @@ bamboo_license = "bamboo-license"
 # Number of product application nodes.
 # Note: For initial installation this value needs to be set to 1 and it can be changed only after product is fully
 # installed and configured.
-jira_replica_count = 1
+jira_replica_count = 4
 confluence_replica_count = 1
 bitbucket_replica_count = 1
 crowd_replica_count = 1
@@ -110,7 +110,7 @@ jira_image_repository = "atlassian/jira-software"
 
 # Supported versions by DCAPT: https://github.com/atlassian/dc-app-performance-toolkit#supported-versions
 # Jira version
-jira_version_tag = "10.3.4"
+jira_version_tag = "9.12.19"
 
 # JSM version
 # ! REQUIRED for JSM !
